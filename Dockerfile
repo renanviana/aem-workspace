@@ -9,4 +9,4 @@ RUN pip3 install -r scripts/requirements.txt
 RUN python3 scripts/sdk_extract.py author
 RUN python3 scripts/sdk_extract.py publish
 RUN yum -y install java-11-openjdk
-# ENTRYPOINT [ "tail", "-f", "/dev/null" ]
+# ENTRYPOINT [ "tail", "-f", "/dev/null" ] # use only in tests

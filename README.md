@@ -1,31 +1,30 @@
-# Maple Bear AEM Author Container
+# AEM Workspace
 
-## Startup
+## Prerequisites
+
+- Docker
+    - [Linux](https://docs.docker.com/desktop/install/linux-install/)
+    - [MacOS](https://docs.docker.com/desktop/install/mac-install/)
+    - [Windows](https://docs.docker.com/desktop/install/windows-install/)
+- Make sure "docker compose" is installed
+    - [Docker Compose](https://docs.docker.com/compose/)
+
+## Usage
+
+Startup containers
 
 ```bash
-docker compose build
+docker compose up --build -d
 ```
+
+Down containers
 
 ```bash
-docker compose run --rm --service-ports -d 
+docker compose down
 ```
 
-Execute this command in root project 'aem-maple-bear-portal'
+Excute only author container
 
 ```bash
-mvn clean install -PautoInstallBundle,autoInstallPackage -DskipTests && curl -u admin:admin http://localhost:4502/system/console/bundles/maple-bear.bundle -Faction=start
+docker compose run author --rm --service-ports -d 
 ```
-
-Access http://localhost:4502/system/console/bundles and start maple-bear.bundle
-
-#!/bash
-
-java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:5502 -Dadmin.password.file=passwordfile.properties -jar aem-author-p4502.jar -nointeractive
-
-# curl -u admin:admin -F package=@"maple-bear-author-default-vars-6.1.1.zip" http://localhost:4502/crx/packmgr/service/.json/?cmd=upload && curl -u admin:admin -F cmd=install http://localhost:4502/crx/packmgr/service/.json/etc/packages/my_packages/maple-bear-author-default-vars-6.1.1.zip
-# curl -u admin:admin -F package=@"maple-bear-publish-default-vars-6.1.1.zip" http://localhost:4503/crx/packmgr/service/.json/?cmd=upload && curl -u admin:admin -F cmd=install http://localhost:4503/crx/packmgr/service/.json/etc/packages/my_packages/maple-bear-publish-default-vars-6.1.1.zip
-# curl -u admin:admin -F package=@"maple-bear-content-dev-9.4.7.zip" http://localhost:4502/crx/packmgr/service/.json/?cmd=upload && curl -u admin:admin -F cmd=install http://localhost:4502/crx/packmgr/service/.json/etc/packages/my_packages/maple-bear-content-dev-9.4.7.zip
-# curl -u admin:admin http://localhost:4502/system/console/bundles/maple-bear.bundle -Faction=start
-
-
-curl -u admin:admin -F package=@"maple-bear-publish-default-vars-6.1.1.zip" http://localhost:4503/crx/packmgr/service/.json/?cmd=upload && curl -u admin:admin -F cmd=install http://localhost:4503/crx/packmgr/service/.json/etc/packages/my_packages/maple-bear-publish-default-vars-6.1.1.zip
