@@ -16,11 +16,6 @@ with open(f"{root}/config.yml", "r") as stream:
     if len(sys.argv) > 1:
         mode = sys.argv[1]
         executable = config[mode]["executable"]
-        if mode == "author":
-            setup_aem(executable)
-        elif mode == "publish":
-            setup_aem(executable)
-        else:
-            print("ERROR: mode [author or publish] incorrect")
+        setup_aem(executable)
     else:
         print("ERROR: mode [author or publish] arg is required")
