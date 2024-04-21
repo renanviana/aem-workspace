@@ -1,0 +1,9 @@
+protocol: http
+host: localhost
+auth: admin:admin
+author:
+  port: 4502
+  executable: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5502 -Dadmin.password.file=passwordfile.properties -jar aem-author-p4502.jar -r author -nointeractive
+publish:
+  port: 4503
+  executable: java -Dadmin.password.file=passwordfile.properties -jar aem-publish-p4503.jar -r publish -nointeractive
